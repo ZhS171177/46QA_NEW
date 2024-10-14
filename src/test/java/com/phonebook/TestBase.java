@@ -12,52 +12,26 @@ import java.lang.reflect.Method;
 public class TestBase {
      Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-//    @BeforeSuite
-//    public void test1() {
-//        logger.info("hello @BeforeSuite");
-//    }
-
-//    @BeforeClass
-//    public void test2() {
-//        logger.info("hello  @BeforeClass");
-//    }
 
     protected static ApplicationManager app = new ApplicationManager
             (System.getProperty("browser", "chrome"));
-   // Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-
-    //@BeforeMethod
     @BeforeSuite
     public void setUp() {
         logger.info("*****************************Testing in progress****************************");
         app.init();
-//        logger.info("Hello world.");
+
     }
 
     @BeforeMethod
     public void startTest(Method method){
         logger.info("Test is started ["+ method.getName()+"]");
     }
-/*
-   @AfterMethod
-    public  void stopTest(Method method, ITestResult result){
-        if(result.isSuccess()){
-            logger.info("Test is passed ["+ method.getName()+"]");
-        }else{
-            logger.info("Test is failed ["+ method.getName()+"], Screenshot:["+app.getUserHelper().takeScreenshot()+"]");
-        }
-    }
-*/
 
-
-
-    //@AfterMethod(enabled = false)
     @AfterSuite(enabled =true)
     public void terDown() {
         logger.info("*****************************All test end****************************");
         app.stop();
-
     }
 
     @AfterMethod

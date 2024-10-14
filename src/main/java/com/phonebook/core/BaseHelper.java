@@ -15,13 +15,15 @@ public class BaseHelper {
     protected WebDriver driver;
     protected WebDriverWait wait;
     Logger logger = LoggerFactory.getLogger(BaseHelper.class);
+
+
     public BaseHelper(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
     }
 
     public boolean isElementPresent(By locator) {
-        logger.info("Проверка есть ли елемент [ " + locator + "] на странице");
+        //logger.info("Проверка есть ли елемент [ " + locator + "] на странице");
         return driver.findElements(locator).size() > 0;
     }
 
@@ -37,7 +39,7 @@ public class BaseHelper {
     public void click(By locator) {
         driver.findElement(locator).click();
        // logger.error("["+locator+"] is pressed");
-        logger.info("["+locator+"] is pressed");
+       // logger.info("["+locator+"] is pressed");
         //logger.info("[{}] and {} is pressed", locator, locator);
     }
 
